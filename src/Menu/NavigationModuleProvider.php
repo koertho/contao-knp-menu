@@ -74,6 +74,10 @@ class NavigationModuleProvider implements MenuProviderInterface
             $host = $rootPage->domain;
         }
 
+        if ('customnav' === ($options['type'] ?? '') && !isset($options['knp_skip_subpages'])) {
+            $options['knp_skip_subpages'] = true;
+        }
+
         return $this->builder->getMenu($menu, (int) $trail[$level], 1, $host ?? null, $options);
     }
 
